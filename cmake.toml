@@ -1,0 +1,17 @@
+# Reference: https://build-cpp.github.io/cmkr/cmake-toml
+[project]
+name = "libx86"
+
+[subdir."Triton"]
+cmake-before = """
+set(PYTHON_BINDINGS OFF)
+"""
+
+[target.libx86]
+type = "shared"
+sources = ["src/*.cpp", "include/*.hpp"]
+include-directories = ["include"]
+compile-features = ["cxx_std_20"]
+link-libraries = [
+    "triton"
+]
