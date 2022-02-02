@@ -9,8 +9,7 @@ int test()
 
 int main() 
 {
-    std::vector<uint8_t> raw(100);
-    raw.assign((const uint8_t*)test, (const uint8_t*)test + 100);
+    std::vector<uint8_t> raw((const uint8_t*)test, (const uint8_t*)test + 100);
     triton::API api;
     api.setArchitecture(triton::arch::ARCH_X86_64);
     api.setConcreteMemoryAreaValue(0, raw);
