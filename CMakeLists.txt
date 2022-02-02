@@ -49,6 +49,8 @@ set(libx86_SOURCES "")
 list(APPEND libx86_SOURCES
 	"src/disasm.cpp"
 	"src/emulator.cpp"
+	"include/disasm.hpp"
+	"include/emulator.hpp"
 )
 
 list(APPEND libx86_SOURCES
