@@ -13,7 +13,7 @@ namespace x86
         std::vector<triton::arch::Instruction> stream;
 
         [[nodiscard]] int next(const ins_filter_t& filter, int from =  0) const;
-	    [[nodiscard]] int prev(const ins_filter_t& filter, int from = -1) const;
+        [[nodiscard]] int prev(const ins_filter_t& filter, int from = -1) const;
 
         void dump() const;
 
