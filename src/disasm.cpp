@@ -5,8 +5,7 @@
 
 namespace x86
 {
-
-    int handler::next(const ins_filter_t& filter, int from) const
+    int routine::next(const ins_filter_t& filter, int from) const
     {
         if (from >= stream.size()) return -1;
         for (int i = from; i < stream.size(); i++)
@@ -14,7 +13,7 @@ namespace x86
         return -1;
     }
 
-    int handler::prev(const ins_filter_t& filter, int from) const
+    int routine::prev(const ins_filter_t& filter, int from) const
     {
         if (from == -1) from = (int)stream.size() - 1;
         if (from >= stream.size()) return -1;
@@ -23,15 +22,15 @@ namespace x86
         return -1;
     }
 
-    void handler::dump() const
+    void routine::dump() const
     {
         for (const auto& i : stream)
             std::printf("0x%lx %s\n", i.getAddress(), i.getDisassembly().c_str());
     }
 
-    handler& unroll(triton::API* api, uint64_t address)
+    routine& unroll(triton::API* api, uint64_t address)
     {
-        static std::map<uint64_t, handler> cache;
+        static std::map<uint64_t, routine> cache;
         static std::mutex cache_mutex;
 
         std::lock_guard g(cache_mutex);

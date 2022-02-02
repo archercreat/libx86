@@ -2,10 +2,11 @@
 [project]
 name = "libx86"
 
-[subdir."Triton"]
-cmake-before = """
-set(PYTHON_BINDINGS OFF)
-"""
+[options]
+PYTHON_BINDINGS = false
+
+[fetch-content.triton]
+git = "https://github.com/JonathanSalwan/Triton.git"
 
 [target.libx86]
 type = "shared"
@@ -15,3 +16,4 @@ compile-features = ["cxx_std_20"]
 link-libraries = [
     "triton"
 ]
+ 

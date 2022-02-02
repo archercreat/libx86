@@ -80,16 +80,6 @@ namespace x86
         return api->getCpuInstance()->getStackPointer();
     }
 
-    // void emulator::write_mem(uint64_t addr, uint64_t value)
-    // {
-    //     api->setConcreteMemoryValue(triton::arch::MemoryAccess(addr, sizeof(uint64_t)), value);
-    // }
-
-    // uint64_t emulator::read_mem(uint64_t addr) const
-    // {
-    //     return api->getConcreteMemoryValue(triton::arch::MemoryAccess(addr, sizeof(uint64_t))).convert_to<uint64_t>();
-    // }
-
     emulator emulator::fork() const
     {
         using namespace triton::arch;

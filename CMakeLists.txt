@@ -27,19 +27,20 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
+# Options
+option(PYTHON_BINDINGS OFF)
+
 project(libx86)
 
-set(PYTHON_BINDINGS OFF)
+include(FetchContent)
 
-# Triton
-set(CMKR_CMAKE_FOLDER ${CMAKE_FOLDER})
-if(CMAKE_FOLDER)
-	set(CMAKE_FOLDER "${CMAKE_FOLDER}/Triton")
-else()
-	set(CMAKE_FOLDER Triton)
-endif()
-add_subdirectory(Triton)
-set(CMAKE_FOLDER ${CMKR_CMAKE_FOLDER})
+message(STATUS "Fetching triton...")
+FetchContent_Declare(
+	triton
+	GIT_REPOSITORY
+		https://github.com/JonathanSalwan/Triton.git
+)
+FetchContent_MakeAvailable(triton)
 
 # Target libx86
 set(CMKR_TARGET libx86)
