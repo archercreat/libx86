@@ -47,10 +47,10 @@ set(CMKR_TARGET libx86)
 set(libx86_SOURCES "")
 
 list(APPEND libx86_SOURCES
-	"src/disasm.cpp"
-	"src/emulator.cpp"
-	"include/disasm.hpp"
-	"include/emulator.hpp"
+	"src/libx86/disasm.cpp"
+	"src/libx86/emulator.cpp"
+	"include/libx86/disasm.hpp"
+	"include/libx86/emulator.hpp"
 )
 
 list(APPEND libx86_SOURCES

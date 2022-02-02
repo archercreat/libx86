@@ -10,10 +10,9 @@ git = "https://github.com/JonathanSalwan/Triton.git"
 
 [target.libx86]
 type = "shared"
-sources = ["src/*.cpp", "include/*.hpp"]
+sources = ["src/**.cpp", "include/**.hpp"]
 include-directories = ["include"]
 compile-features = ["cxx_std_20"]
 link-libraries = [
     "triton"
 ]
- 
