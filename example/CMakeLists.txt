@@ -27,7 +27,7 @@ if(CMKR_ROOT_PROJECT)
 	configure_file(cmake.toml cmake.toml COPYONLY)
 endif()
 
-project(test)
+project(example)
 
 include(FetchContent)
 
@@ -39,37 +39,37 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(libx86)
 
-# Target test
-set(CMKR_TARGET test)
-set(test_SOURCES "")
+# Target example
+set(CMKR_TARGET example)
+set(example_SOURCES "")
 
-list(APPEND test_SOURCES
+list(APPEND example_SOURCES
 	"src/main.cpp"
 )
 
-list(APPEND test_SOURCES
+list(APPEND example_SOURCES
 	cmake.toml
 )
 
-set(CMKR_SOURCES ${test_SOURCES})
-add_executable(test)
+set(CMKR_SOURCES ${example_SOURCES})
+add_executable(example)
 
-if(test_SOURCES)
-	target_sources(test PRIVATE ${test_SOURCES})
+if(example_SOURCES)
+	target_sources(example PRIVATE ${example_SOURCES})
 endif()
 
 get_directory_property(CMKR_VS_STARTUP_PROJECT DIRECTORY ${PROJECT_SOURCE_DIR} DEFINITION VS_STARTUP_PROJECT)
 if(NOT CMKR_VS_STARTUP_PROJECT)
-	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT test)
+	set_property(DIRECTORY ${PROJECT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT example)
 endif()
 
-source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${test_SOURCES})
+source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR} FILES ${example_SOURCES})
 
-target_compile_features(test PRIVATE
+target_compile_features(example PRIVATE
 	cxx_std_20
 )
 
-target_link_libraries(test PRIVATE
+target_link_libraries(example PRIVATE
 	libx86
 )
 
