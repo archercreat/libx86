@@ -1,4 +1,5 @@
 #include "libx86/emulator.hpp"
+#include "libx86/disasm.hpp"
 
 namespace x86
 {
@@ -35,6 +36,12 @@ namespace x86
     }
 
     void emulator::execute(std::vector<triton::arch::Instruction>& stream)
+    {
+        for (auto& ins : stream)
+            execute(ins);
+    }
+
+    void emulator::execute(std::vector<instruction>& stream)
     {
         for (auto& ins : stream)
             execute(ins);

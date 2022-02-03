@@ -11,6 +11,8 @@
 
 namespace x86
 {
+    struct instruction;
+
     struct emulator
     {
         emulator() = default;
@@ -19,6 +21,7 @@ namespace x86
         void map(uint64_t va, const std::vector<uint8_t>& bytes);
         void execute(triton::arch::Instruction& ins);
         void execute(std::vector<triton::arch::Instruction>& stream);
+        void execute(std::vector<instruction>& stream);
         void soft_reset() const;
 
         [[nodiscard]] uint64_t pc() const;
