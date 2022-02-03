@@ -13,8 +13,8 @@ namespace x86
         using triton::arch::Instruction::Instruction;
 
         instruction(const triton::arch::Instruction& ins);
-        [[nodiscard]] bool is(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops);
-        [[nodiscard]] bool is(const ins_filter_t& filter);
+        [[nodiscard]] bool is(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops) const;
+        [[nodiscard]] bool is(const ins_filter_t& filter) const;
     };
     
     struct routine
@@ -23,6 +23,8 @@ namespace x86
 
         [[nodiscard]] int next(const ins_filter_t& filter, int from =  0) const;
         [[nodiscard]] int prev(const ins_filter_t& filter, int from = -1) const;
+        [[nodiscard]] int next(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops, int from = -1) const;
+        [[nodiscard]] int prev(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops, int from = -1) const;
 
         void dump() const;
 

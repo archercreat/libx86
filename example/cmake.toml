@@ -1,11 +1,11 @@
 # Reference: https://build-cpp.github.io/cmkr/cmake-toml
 [project]
-name = "test"
+name = "example"
 
 [fetch-content.libx86]
 git = "https://github.com/archercreat/libx86.git"
 
-[target.test]
+[target.example]
 type = "executable"
 sources = ["src/main.cpp"]
 compile-features = ["cxx_std_20"]

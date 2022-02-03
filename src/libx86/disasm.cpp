@@ -10,7 +10,7 @@ namespace x86
         *dynamic_cast<triton::arch::Instruction*>(this) = ins;
     }
 
-    bool instruction::is(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops)
+    bool instruction::is(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops) const
     {
         if (getType() == mnem && operands.size() >= ops.size())
         {
@@ -23,7 +23,7 @@ namespace x86
         return false;
     }
 
-    bool instruction::is(const ins_filter_t& filter)
+    bool instruction::is(const ins_filter_t& filter) const
     {
         return filter(*this);
     }
@@ -42,6 +42,22 @@ namespace x86
         if (from >= stream.size()) return -1;
         for (int i = from; i >= 0; i--)
             if (filter(stream[i])) return i;
+        return -1;
+    }
+
+    int routine::next(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops, int from) const
+    {
+        if (from >= stream.size()) return -1;
+        for (int i = from; i < stream.size(); i++)
+            if (stream[i].is(mnem, ops)) return i;
+        return -1;
+    }
+    int routine::prev(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops, int from) const
+    {
+        if (from == -1) from = (int)stream.size() - 1;
+        if (from >= stream.size()) return -1;
+        for (int i = from; i >= 0; i--)
+            if (stream[i].is(mnem, ops)) return i;
         return -1;
     }
 
