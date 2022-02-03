@@ -5,6 +5,29 @@
 
 namespace x86
 {
+    instruction::instruction(const triton::arch::Instruction& ins)
+    {
+        *dynamic_cast<triton::arch::Instruction*>(this) = ins;
+    }
+
+    bool instruction::is(triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops)
+    {
+        if (getType() == mnem && operands.size() >= ops.size())
+        {
+            for (size_t i = 0; i < ops.size(); i++)
+                if (operands[i].getType() != ops[i])
+                    return false;
+            return true;
+
+        }
+        return false;
+    }
+
+    bool instruction::is(const ins_filter_t& filter)
+    {
+        return filter(*this);
+    }
+
     int routine::next(const ins_filter_t& filter, int from) const
     {
         if (from >= stream.size()) return -1;
