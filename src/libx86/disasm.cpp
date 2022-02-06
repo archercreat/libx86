@@ -12,7 +12,9 @@ instruction::instruction( const triton::arch::Instruction& ins )
 
 bool instruction::is( triton::arch::x86::instruction_e mnem, const std::vector<triton::arch::operand_e>& ops ) const
 {
-    if ( getType() == mnem && operands.size() >= ops.size() )
+    if ( getType() != mnem ) 
+        return false;
+    if ( ops.size() <= operands.size() )
     {
         for ( size_t i = 0; i < ops.size(); i++ )
             if ( operands[i].getType() != ops[i] )
