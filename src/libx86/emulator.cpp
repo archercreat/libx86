@@ -13,8 +13,6 @@ emulator::emulator( triton::arch::architecture_e arch )
     api->setMode( triton::modes::AST_OPTIMIZATIONS, true );
     api->setMode( triton::modes::TAINT_THROUGH_POINTERS, true );
 
-    api->enableTaintEngine( true );
-
     api->concretizeAllMemory();
     api->concretizeAllRegister();
 
